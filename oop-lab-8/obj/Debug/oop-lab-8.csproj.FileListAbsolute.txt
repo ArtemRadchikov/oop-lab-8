@@ -1,0 +1,7 @@
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\bin\Debug\oop-lab-8.exe.config
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\bin\Debug\oop-lab-8.exe
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\bin\Debug\oop-lab-8.pdb
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\obj\Debug\oop-lab-8.csprojAssemblyReference.cache
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\obj\Debug\oop-lab-8.csproj.CoreCompileInputs.cache
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\obj\Debug\oop-lab-8.exe
+D:\дз\ДЗ        2 курс\ООП\8\oop-lab-8\oop-lab-8\obj\Debug\oop-lab-8.pdb
