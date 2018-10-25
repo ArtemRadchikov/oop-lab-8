@@ -4,40 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
 
 
 namespace oop_lab_8
 {
-    internal class SmaleBDInFiles<T> where T : Goods
-    {
-        
-        //FileStream file = new FileStream("SmaleBDInFiles.txt", FileMode.Open);
-
-        public void Writing(T element) 
+    internal static class SmaleBDInFiles<T> where T : Goods
+    {   
+    public static void Writing(T element) 
         {
-          
-            using (TextWriter write = File.CreateText("OnlyOneElement.txt"))
+            TextWriter write = null;
+            try
             {
-                write.Write(element.Name+' ');
-                write.Write(element.ProducingCountry + ' ');
-                write.Write(element.Price);
+                using (write = File.CreateText("OnlyOneElement.txt"))
+                {
+                    write.WriteLine(element.Name);
+                    write.WriteLine(element.ProducingCountry);
+                    write.WriteLine(element.Price);
+                    write.Close();
+                }
+            }
+            catch
+            {
+                Debug.Assert(false, "Возникла ошибка при записи в файл");
+            }
+            finally
+            {
                 write.Close();
             }
         }
 
-        public void Reading(QueueForGoods<Goods> queueForGoods)
+        public static void Reading(QueueForGoods<Goods> queueForGoods) 
         {
-            String name, producingCountry;
-            int price;
-            using (TextReader read = File.OpenText("OnlyOneElement.txt"))
+            String name="", producingCountry="";
+            int price=0;
+            TextReader read = null;
+            try
             {
-                name = read.ReadLine();
-                producingCountry = read.ReadLine();
-                price = Convert.ToInt32(read.ReadLine());
-                
+                using (read = File.OpenText("OnlyOneElement.txt"))
+                {
+                    name = read.ReadLine();
+                    producingCountry = read.ReadLine();
+                    price = Convert.ToInt32(read.ReadLine());
+
+                }
             }
-            Technique technique = new Technique(name, producingCountry, price, "2");
-            queueForGoods.Enqueue(technique);
+            catch
+            {
+                Debug.Assert(false, "Возникла ошибка при чтении из файла");
+            }
+            finally
+            {
+                Technique technique = new Technique(name, producingCountry, price, "2");
+                queueForGoods.Enqueue(technique);
+            }
         }
 
     }
