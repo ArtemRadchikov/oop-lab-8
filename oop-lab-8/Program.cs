@@ -111,17 +111,24 @@ namespace oop_lab_8
             queueForGoods.Print();
             #endregion
 
-            SmaleBDInFiles<Goods> smaleBDInFiles = new SmaleBDInFiles<Goods>();
+            //SmaleBDInFiles<Goods> smaleBDInFiles = new SmaleBDInFiles<Goods>();
 
-            smaleBDInFiles.Writing(queueForGoods.MasOfValue[0]);
-            smaleBDInFiles.Writing(queueForGoods.MasOfValue[1]);
+            SmaleBDInFiles<Goods>.Writing(queueForGoods.MasOfValue[0]);
+            SmaleBDInFiles<Goods>.Writing(queueForGoods.MasOfValue[1]);
             Console.ForegroundColor = ConsoleColor.Green;
 
             queueForGoods.Print();
 
-            smaleBDInFiles.Reading(queueForGoods);
+            SmaleBDInFiles<Goods>.Reading(queueForGoods);
 
             Console.ForegroundColor = ConsoleColor.Blue;
+            queueForGoods.Print();
+
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+            Console.WriteLine("Сериализация и Десериализация");
+            SmaleBDInFiles<Goods>.WriteObjectIntoFile(queueForGoods.MasOfValue[0]);
+            SmaleBDInFiles<Goods>.ReadObjectFromFile(queueForGoods);
             queueForGoods.Print();
 
 

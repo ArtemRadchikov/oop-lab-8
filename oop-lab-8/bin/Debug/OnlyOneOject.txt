@@ -1,0 +1,1 @@
+{"Manufacturer":"12.12.2014","OperationPeriod":"5 year","Owner":"12.12.2014","Price":498500,"ProducingCountry":"РФ","Name":"Товар-техника"}

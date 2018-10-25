@@ -18,9 +18,14 @@ namespace oop_lab_8
         public string ProducingCountry { get => producingCountry; set => producingCountry = value; }
         public string Name { get => name; set => name = value; }
 
+        //public Goods();
+
         public Goods(string name, string producingCountry,  int price):this()
         {
-            this.Name = name;
+            if (this.name == null)
+            {
+                this.Name = name;
+            }
             this.ProducingCountry = producingCountry;
             this.Price = price;
         }
@@ -41,7 +46,7 @@ namespace oop_lab_8
             return resolt;
         }
 
-        public virtual string Manufacturer { get { return producingCountry ;} set { throw new GoodsException("Поипытка изменения производителя у товара!"); } }
+        public virtual string Manufacturer { get { return producingCountry ;} set { producingCountry = value;/*throw new GoodsException("Поипытка изменения производителя у товара!");*/ } }
 
         //public string Manufacturer => throw new NotImplementedException();
 
@@ -124,18 +129,22 @@ namespace oop_lab_8
     {
         private string operationPeriod;
         private string owner;
+        public Technique() : base() { }
         public Technique(string name, string producingCountry, int prise, string operationPeriod) : base(name, producingCountry, prise)
         {
             this.OperationPeriod = operationPeriod;
             Console.WriteLine("Введите название компании-производителя:");
             string input = Console.ReadLine();
-            if (input == null)
+            if (input == null )
             {
                 throw new NullTechniqueException("Пустое имя при создание владельца Technique");
             }
             else
             {
-                this.Owner = input;
+                if (this.Owner == null)
+                {
+                    this.Owner = input;
+                }
             }
         }
 
@@ -167,7 +176,7 @@ namespace oop_lab_8
         }
         
         
-        public override string Manufacturer { get { return owner; } set { throw new TechniqueException("Поипытка изменения производителя у техники!"); } }
+        public override string Manufacturer { get { return owner; } set { owner = value;/*throw new TechniqueException("Поипытка изменения производителя у техники!");*/ } }
 
         public string OperationPeriod { get => operationPeriod; set => operationPeriod = value; }
         public string Owner { get => owner; set => owner = value; }

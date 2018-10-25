@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
+using System.Runtime.Serialization;
 using System.IO;
 using System.Diagnostics;
 
@@ -11,6 +10,51 @@ namespace oop_lab_8
 {
     internal static class SmaleBDInFiles<T> where T : Goods
     {   
+        public static void WriteObjectIntoFile(T element)
+        {
+            string serialized = JsonConvert.SerializeObject(element);
+            TextWriter write = null;
+            try
+            {
+                using (write = File.CreateText("OnlyOneOject.txt"))
+                {
+                    write.WriteLine(serialized);                    
+                }
+            }
+            catch
+            {
+                Debug.Assert(false, "Возникла ошибка при записи в файл");
+            }
+            finally
+            {
+                write.Close();
+            }
+        }
+
+        public static void ReadObjectFromFile(QueueForGoods<Goods> queueForGoods)
+        {
+            //String name = "", producingCountry = "";
+            //int price = 0;
+            TextReader read = null;
+            try
+            {                
+                using (read = File.OpenText("OnlyOneOject.txt"))
+                {
+                    string serialized = read.ReadToEnd();
+                    Technique technique = JsonConvert.DeserializeObject<Technique>(serialized);
+                    queueForGoods.Enqueue(technique);
+                }
+            }
+            catch
+            {
+               // Debug.Assert(false, "Возникла ошибка при чтении из файла");
+            }
+            finally
+            {
+                read.Close();           
+            }
+        }
+        
     public static void Writing(T element) 
         {
             TextWriter write = null;
@@ -21,7 +65,6 @@ namespace oop_lab_8
                     write.WriteLine(element.Name);
                     write.WriteLine(element.ProducingCountry);
                     write.WriteLine(element.Price);
-                    write.Close();
                 }
             }
             catch
@@ -57,6 +100,7 @@ namespace oop_lab_8
             {
                 Technique technique = new Technique(name, producingCountry, price, "2");
                 queueForGoods.Enqueue(technique);
+                read.Close();
             }
         }
 
